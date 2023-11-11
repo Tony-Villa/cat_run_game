@@ -30,19 +30,14 @@ func _process(delta):
 	
 	match current_state:
 		State.Idle:
-			print("Idle")
 			process_idle(movement_vector)
 		State.Run:
-			print("Run")
 			process_run(movement_vector)
 		State.Dash:
-			print("Dash")
 			process_dash(delta)
 		State.Dash_Roll:
-			print("Dash Roll")
 			process_dash_roll(delta)
 		State.Dash_Stun:
-			print("Dash_Stun")
 			process_dash_stun(delta)
 	
 
