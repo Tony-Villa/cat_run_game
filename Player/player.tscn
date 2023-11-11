@@ -10,6 +10,9 @@ height = 18.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_xcv28")
 base_speed = 150
+dash_speed = 300
+dash_rate = 0.2
+stun_rate = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -9)
