@@ -4,18 +4,22 @@ enum State {
 	Idle,
 	Run,
 	Dash,
-	Stun
+	Dash_Roll,
+	Dash_Stun
 }
 
 @export var base_speed: int = 0
 @export var dash_speed: int = 0
+@export var dash_roll_speed: int = 0
 @export var dash_rate: float = 0
-@export var stun_rate: float = 0
+@export var dash_roll_rate: float = 0
+@export var dash_stun_rate: float = 0
 
 var current_state: State = State.Idle
 var dash_direction: Vector2 = Vector2(0,0)
 var dash_cooldown: float = dash_rate
-var stun_cooldown: float = stun_rate
+var dash_roll_cooldown: float = dash_roll_rate
+var dash_stun_cooldown: float = dash_stun_rate
 
 func _ready():
 	pass
@@ -34,9 +38,12 @@ func _process(delta):
 		State.Dash:
 			print("Dash")
 			process_dash(delta)
-		State.Stun:
-			print("Stun")
-			process_stun(delta)
+		State.Dash_Roll:
+			print("Dash Roll")
+			process_dash_roll(delta)
+		State.Dash_Stun:
+			print("Dash_Stun")
+			process_dash_stun(delta)
 	
 
 func process_idle(movement_vector: Vector2):
@@ -63,17 +70,28 @@ func process_run(movement_vector: Vector2):
 func process_dash(delta):
 	dash_cooldown += delta
 	if dash_cooldown > dash_rate:
-		stun_cooldown = 0
-		current_state = State.Stun
+		dash_roll_cooldown = 0
+		current_state = State.Dash_Roll
 		return
 		
 	velocity = dash_direction * base_speed * (1 + (dash_speed / 100))
 	move_and_slide()
 	
 
-func process_stun(delta):
-	stun_cooldown += delta
-	if stun_cooldown > stun_rate:
+func process_dash_roll(delta):
+	dash_roll_cooldown += delta
+	if dash_roll_cooldown > dash_roll_rate:
+		dash_stun_cooldown = 0
+		current_state = State.Dash_Stun
+		return
+	
+	velocity = dash_direction * base_speed * (1 - (dash_roll_speed / 100))
+	move_and_slide()
+	
+
+func process_dash_stun(delta):
+	dash_stun_cooldown += delta
+	if dash_stun_cooldown > dash_stun_rate:
 		current_state = State.Idle
 		return
 	
