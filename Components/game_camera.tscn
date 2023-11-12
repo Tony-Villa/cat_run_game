@@ -1,7 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://gklmgrtjkpb0"]
+[gd_scene load_steps=6 format=3 uid="uid://gklmgrtjkpb0"]
 
 [ext_resource type="Script" path="res://Components/game_camera.gd" id="1_t4kc2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57nyg"]
+size = Vector2(20, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk2rm"]
+size = Vector2(20, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr0va"]
+size = Vector2(680, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arot7"]
+size = Vector2(680, 20)
 
 [node name="GameCamera" type="Camera2D"]
 script = ExtResource("1_t4kc2")
 camera_offset = 303
+
+[node name="Border" type="StaticBody2D" parent="."]
+collision_layer = 32768
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(-330, 0)
+shape = SubResource("RectangleShape2D_57nyg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(330, 0)
+shape = SubResource("RectangleShape2D_uk2rm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(0, -190)
+shape = SubResource("RectangleShape2D_fr0va")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+position = Vector2(0, 190)
+shape = SubResource("RectangleShape2D_arot7")

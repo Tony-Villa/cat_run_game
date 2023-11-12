@@ -13,7 +13,7 @@ func _ready():
 		print("Error: Need to put player in scene!")
 
 
-func _process(delta):
+func _process(_delta):
 	if player == null:
 		pass
 		
