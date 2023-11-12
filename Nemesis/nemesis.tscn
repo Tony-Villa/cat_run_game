@@ -10,7 +10,8 @@ height = 34.0
 [node name="Nemesis" type="CharacterBody2D" groups=["nemesis"]]
 position = Vector2(17, 0)
 script = ExtResource("1_1kvdb")
-base_speed = 50
+horizontal_speed = 3.0
+vertical_speed = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
