@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cegpvmc24nqad"]
+
+[ext_resource type="Script" path="res://Nemesis/nemesis.gd" id="1_1kvdb"]
+[ext_resource type="Texture2D" uid="uid://djuogqfbiwhcc" path="res://Nemesis/nemesis.png" id="1_l4fx3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bv3nt"]
+radius = 13.0
+height = 34.0
+
+[node name="Nemesis" type="CharacterBody2D" groups=["nemesis"]]
+position = Vector2(17, 0)
+script = ExtResource("1_1kvdb")
+horizontal_speed = 3.0
+vertical_speed = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_l4fx3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bv3nt")
