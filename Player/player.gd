@@ -21,12 +21,14 @@ var dash_cooldown: float = dash_rate
 var dash_roll_cooldown: float = dash_roll_rate
 var dash_stun_cooldown: float = dash_stun_rate
 
+
 func _ready():
 	pass
 
 
 func _process(delta):
 	var movement_vector = get_movement_vector()
+	rotate_cat(movement_vector)
 	
 	match current_state:
 		State.Idle:
@@ -89,9 +91,32 @@ func process_dash_stun(delta):
 	if dash_stun_cooldown > dash_stun_rate:
 		current_state = State.Idle
 		return
-	
-		
+
+
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_movement = Input.get_action_strength("down") - Input.get_action_strength("up")
 	return Vector2(x_movement, y_movement)
+
+
+func rotate_cat(vec: Vector2):
+	match vec:
+		Vector2(-1,0):
+			rotation_degrees = 180
+		Vector2(-1,1):
+			rotation_degrees = 135
+		Vector2(-1,-1):
+			rotation_degrees = -135
+
+		Vector2(1,0):
+			rotation_degrees = 0
+		Vector2(1,-1):
+			rotation_degrees = -45
+		Vector2(1,1):
+			rotation_degrees = 45
+		
+		Vector2(0,-1):
+			rotation_degrees = -90
+		Vector2(0,1):
+			rotation_degrees = 90
+
