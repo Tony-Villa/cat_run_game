@@ -28,6 +28,7 @@ func _process(delta):
 
 
 func process_idle(delta):
+	$AnimatedSprite2D.play("grazing")
 	move_cooldown += delta
 	if move_cooldown > move_cooldown_rate:
 		move_time = 0
@@ -36,6 +37,7 @@ func process_idle(delta):
 
 
 func process_move(delta):
+	$AnimatedSprite2D.play("walk")
 	move_time += delta
 	if move_time > move_time_rate:
 		move_cooldown = 0
