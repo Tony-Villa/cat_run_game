@@ -1,7 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://v6qu4kjxgqq2"]
+[gd_scene load_steps=14 format=3 uid="uid://v6qu4kjxgqq2"]
 
 [ext_resource type="Script" path="res://Units/deer.gd" id="1_1tun5"]
-[ext_resource type="Texture2D" uid="uid://c2kgwsaqne1qq" path="res://Units/deer_static1.png" id="1_dtceu"]
+[ext_resource type="Texture2D" uid="uid://clrduijr5kln6" path="res://Units/grazing/grazing-1.png" id="2_vf51x"]
+[ext_resource type="Texture2D" uid="uid://buqsd26cldf3u" path="res://Units/grazing/grazing-2.png" id="3_pawvb"]
+[ext_resource type="Texture2D" uid="uid://pmnyy12l18vn" path="res://Units/idle1/idle_1-1.png" id="4_6alof"]
+[ext_resource type="Texture2D" uid="uid://cm88hadjmojnd" path="res://Units/idle1/idle_1-2.png" id="5_2qign"]
+[ext_resource type="Texture2D" uid="uid://d0e6xr3d36w54" path="res://Units/idle1/idle_1-3.png" id="6_04mpr"]
+[ext_resource type="Texture2D" uid="uid://bquj4assfemsd" path="res://Units/idle1/idle_1-4.png" id="7_fmgjm"]
+[ext_resource type="Texture2D" uid="uid://fgfqx3jwgix7" path="res://Units/walk/walk1.png" id="8_svt0v"]
+[ext_resource type="Texture2D" uid="uid://cf0w5y80n4dpy" path="res://Units/walk/walk2.png" id="9_j3202"]
+[ext_resource type="Texture2D" uid="uid://bujnp4fw0smdo" path="res://Units/walk/walk3.png" id="10_ul33g"]
+[ext_resource type="Texture2D" uid="uid://fngrj371om01" path="res://Units/walk/walk4.png" id="11_y50ym"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhnh6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vf51x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pawvb")
+}],
+"loop": true,
+"name": &"grazing",
+"speed": 0.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6alof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2qign")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_04mpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fmgjm")
+}],
+"loop": true,
+"name": &"idle_1",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_svt0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j3202")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ul33g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_y50ym")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ytql"]
 radius = 6.0
@@ -15,8 +72,9 @@ base_speed = 100
 move_time_rate = 2.0
 move_cooldown_rate = 1.5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_dtceu")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rhnh6")
+animation = &"grazing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
